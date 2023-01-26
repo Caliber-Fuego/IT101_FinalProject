@@ -7,7 +7,7 @@ class StatusInformation:
         self.lck = 0
         self.total = self.pwr + self.armr + self.con + self.lck
         self.win = 0
-        self.maxhp = 100 + (self.con*1.7)
+        self.maxhp = 100 + (self.con * 1.7)
         self.hp = self.maxhp
 
 
@@ -23,9 +23,10 @@ class PlayerStatus(StatusInformation):
         self.armr = float(input("ARMR: "))
         self.con = float(input("CON: "))
         self.lck = float(input("LCK: "))
+        self.maxhp = 100 + (self.con * 1.7)
 
-#        self.pwr, self.armr, self.con, self.lck = [float(n) for n in input().split()]
-#        code above was to test if whether this is a better way to input numbers
+    #        self.pwr, self.armr, self.con, self.lck = [float(n) for n in input().split()]
+    #        code above was to test if whether this is a better way to input numbers
 
     def printStats(self):
         test = "PWR: %s \nARMR: %s \nCON %s \nLCK %s" % (self.pwr, self.armr, self.con, self.lck)
@@ -37,21 +38,23 @@ class PlayerStatus(StatusInformation):
     def checkTotal(self):
         return self.total
 
-    #Setters
+    # Setters
     def setName(self, name):
         self.name = name
+
     def setHP(self, health):
-        self.health = health
-        return self.health
+        self.hp = health
+        return self.hp
 
-
-
-    #Getters
+    # Getters
     def getName(self):
         return self.name
 
     def getHP(self):
-        return self.health
+        return self.hp
+
+    def getMaxHP(self):
+        return self.maxhp
 
     def getPWR(self):
         return self.pwr
@@ -69,6 +72,7 @@ class PlayerStatus(StatusInformation):
 class MonsterStatus(StatusInformation):
     def __init__(self):
         super().__init__()
+        self.art = ""
 
     def generateSlime(self):
         self.name = "Slime"
@@ -76,14 +80,16 @@ class MonsterStatus(StatusInformation):
         self.armr = 4
         self.con = 5
         self.lck = 1
-        self.maxhp = 50 + (self.con*1.7)
+        self.maxhp = 50 + (self.con * 1.7)
         self.hp = self.maxhp
+        self.art = "　　　　 人\n" \
+                   "　　　(　ﾟーﾟ)"
 
     def setHP(self, health):
         self.hp = health
         return self.hp
 
-    #Getters
+    # Getters
     def getName(self):
         return self.name
 
@@ -101,3 +107,6 @@ class MonsterStatus(StatusInformation):
 
     def getLCK(self):
         return self.lck
+
+    def getArt(self):
+        return self.art

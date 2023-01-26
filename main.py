@@ -19,18 +19,13 @@ def main():
         print("What will you do? \n1. Fight \n2. Run")
         choice = input()
         if choice == "1":
-            #TODO: add turn number fix the combat system (add health reduction for player, end combat if either side gets 0 hp)
-            while True:
-                print("Name:", monster.getName(),"\nHealth:", monster.getHP())
-                print("What will you do? \n1. Attack \n2. Flee")
-                choice = input()
-                if choice == "1":
-                    calc.attacked(player.getPWR(), monster.getARMR(), monster.getHP(), monster)
-                elif choice == "2":
-                    print("You have escaped!")
-                    break
+            player.setHP(player.getMaxHP())
+            combatSystem(player, monster)
         elif choice == "2":
+            print("You have escaped!")
             break
+
+
 
 def playerGenerate(player):
     while True:
@@ -49,7 +44,32 @@ def playerGenerate(player):
             print("Please input only a single integer")
             pass
 
+def combatSystem(player, monster):
+    while True:
+        print(monster.getArt())
+        print("Name: %s \nHealth: %d \n" % (monster.getName(), monster.getHP()))
+        print("What will you do? \n1. Attack \n2. Flee \n")
+        print("Name: %s \nHealth: %d" % (player.getName(), player.getHP()))
+        choice = input()
+        if choice == "1":
+            calc.attacked(player.getPWR(), monster.getARMR(), monster.getHP(), monster)
+            calc.attacked(monster.getPWR(), player.getARMR(), player.getHP(), player)
+            if monster.getHP() <= 0:
+                print("You have defeated %s" % (monster.getName()))
+                break
+            elif player.getHP() <= 0:
+                print("You died")
+                break
+        elif choice == "2":
+            print("You fled!")
+            break
 
 
-
-main()
+while True:
+    main()
+    print("Continue? \n1. Yes\n2. No")
+    choice = input()
+    if choice == "1":
+        continue
+    else:
+        break

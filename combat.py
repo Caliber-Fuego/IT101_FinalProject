@@ -6,3 +6,4 @@ class Formulas:
         damage = pwr - armr
         health = hp - damage
         var.setHP(health)
+        print(" | %s was attacked and took %d damage! | " % (var.getName(), damage))
