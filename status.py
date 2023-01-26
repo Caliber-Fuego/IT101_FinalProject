@@ -76,7 +76,7 @@ class MonsterStatus(StatusInformation):
 
     def generateSlime(self):
         self.name = "Slime"
-        self.pwr = 100
+        self.pwr = 10
         self.armr = 4
         self.con = 5
         self.lck = 1
