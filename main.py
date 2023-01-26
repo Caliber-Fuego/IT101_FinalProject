@@ -13,17 +13,17 @@ def main():
             print("Total stats is greater than 25!")
         else:
             break
-    while True:
-        print("A monster appears!")
-        monster.generateSlime()
-        print("What will you do? \n1. Fight \n2. Run")
-        choice = input()
-        if choice == "1":
-            player.setHP(player.getMaxHP())
-            combatSystem(player, monster)
-        elif choice == "2":
-            print("You have escaped!")
-            break
+    while player.getHP() > 0:
+            print("A monster appears!")
+            monster.generateSlime()
+            print("What will you do? \n1. Fight \n2. Run")
+            choice = input()
+            if choice == "1":
+                player.setHP(player.getMaxHP())
+                combatSystem(player, monster)
+            elif choice == "2":
+                print("You have escaped!")
+                break
 
 
 
