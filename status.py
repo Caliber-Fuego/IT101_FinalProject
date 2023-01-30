@@ -14,7 +14,7 @@ class StatusInformation:
 class PlayerStatus(StatusInformation):
     def __init__(self):
         super().__init__()
-        self.level = 0
+        self.level = 1
         self.exp = 0
         self.maxexp = 100
 
@@ -46,6 +46,35 @@ class PlayerStatus(StatusInformation):
         self.hp = health
         return self.hp
 
+    def setEXP(self, exp):
+        self.exp = exp
+        return self.exp
+
+    def setmaxEXP(self, maxexp):
+        self.maxexp = maxexp
+        return self.maxexp
+
+    def setPWR(self, pwr):
+        self.pwr = pwr
+        return self.pwr
+
+    def setARMR(self, armr):
+        self.armr = armr
+        return self.armr
+
+    def setCON(self, con):
+        self.con = con
+        return self.con
+
+    def setLCK(self, lck):
+        self.lck = lck
+        return self.lck
+
+    def setLVL(self, lvl):
+        self.level = lvl
+        return self.level
+
+
     # Getters
     def getName(self):
         return self.name
@@ -54,6 +83,7 @@ class PlayerStatus(StatusInformation):
         return self.hp
 
     def getMaxHP(self):
+        self.maxhp = 100 + (self.con * 1.7)
         return self.maxhp
 
     def getPWR(self):
@@ -68,11 +98,21 @@ class PlayerStatus(StatusInformation):
     def getLCK(self):
         return self.lck
 
+    def getEXP(self):
+        return self.exp
+
+    def getmaxEXP(self):
+        return self.maxexp
+
+    def getLVL(self):
+        return self.level
+
 
 class MonsterStatus(StatusInformation):
     def __init__(self):
         super().__init__()
         self.art = ""
+        self.xpdrop = 0
 
     def generateSlime(self):
         self.name = "Slime"
@@ -82,6 +122,7 @@ class MonsterStatus(StatusInformation):
         self.lck = 1
         self.maxhp = 50 + (self.con * 1.7)
         self.hp = self.maxhp
+        self.xpdrop = 50
         self.art = "　　　　 人\n" \
                    "　　　(　ﾟーﾟ)"
 
@@ -110,3 +151,6 @@ class MonsterStatus(StatusInformation):
 
     def getArt(self):
         return self.art
+
+    def getxpdrop(self):
+        return self.xpdrop
