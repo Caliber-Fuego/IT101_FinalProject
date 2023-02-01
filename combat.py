@@ -18,16 +18,3 @@ class Formulas:
         addexp = playerxp + xpdrop
         print("You have received %d exp!" % (xpdrop))
         player.setEXP(addexp)
-
-    def monster_strengthening(self, monster, win):
-        monster.setPWR(monster.pwr + (win/2))
-        monster.setARMR(monster.armr + (win/2))
-        monster.setCON(monster.con + (win/2))
-        monster.setLCK(monster.lck + (win/2))
-
-
-
-
-
-
-
