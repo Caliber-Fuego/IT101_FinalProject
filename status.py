@@ -34,6 +34,8 @@ class PlayerStatus(StatusInformation):
         testtotal = [self.pwr, self.armr, self.con, self.lck]
         self.total = sum(testtotal)
         print("Total:", self.total)
+        print("EXP: %d/%d" % (self.exp, self.maxexp))
+        print("Victories: %d" % (self.win))
 
     def checkTotal(self):
         return self.total
@@ -74,39 +76,13 @@ class PlayerStatus(StatusInformation):
         self.level = lvl
         return self.level
 
-
-    # Getters
-    def getName(self):
-        return self.name
-
-    def getHP(self):
-        return self.hp
+    def setWIN(self, win):
+        self.win = win
+        return self.win
 
     def getMaxHP(self):
         self.maxhp = 100 + (self.con * 1.7)
         return self.maxhp
-
-    def getPWR(self):
-        return self.pwr
-
-    def getARMR(self):
-        return self.armr
-
-    def getCON(self):
-        return self.con
-
-    def getLCK(self):
-        return self.lck
-
-    def getEXP(self):
-        return self.exp
-
-    def getmaxEXP(self):
-        return self.maxexp
-
-    def getLVL(self):
-        return self.level
-
 
 class MonsterStatus(StatusInformation):
     def __init__(self):
@@ -114,12 +90,12 @@ class MonsterStatus(StatusInformation):
         self.art = ""
         self.xpdrop = 0
 
-    def generateSlime(self):
+    def generateSlime(self, win):
         self.name = "Slime"
-        self.pwr = 10
-        self.armr = 4
-        self.con = 5
-        self.lck = 1
+        self.pwr = (10 + (win/2))
+        self.armr = (4 + (win/2))
+        self.con = (5 + (win/2))
+        self.lck = (1 + (win/2))
         self.maxhp = 50 + (self.con * 1.7)
         self.hp = self.maxhp
         self.xpdrop = 50
@@ -129,28 +105,11 @@ class MonsterStatus(StatusInformation):
     def setHP(self, health):
         self.hp = health
         return self.hp
-
-    # Getters
-    def getName(self):
-        return self.name
-
-    def getHP(self):
-        return self.hp
-
-    def getPWR(self):
-        return self.pwr
-
-    def getARMR(self):
-        return self.armr
-
-    def getCON(self):
-        return self.con
-
-    def getLCK(self):
-        return self.lck
+    def getMaxHP(self):
+        self.maxhp = 100 + (self.con * 1.7)
+        return self.maxhp
 
     def getArt(self):
         return self.art
 
-    def getxpdrop(self):
-        return self.xpdrop
+
